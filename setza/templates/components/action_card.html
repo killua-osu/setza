@@ -1,0 +1,9 @@
+<article class="setza-panel-card">
+    <div class="mb-3 flex items-center gap-3">
+        <i data-lucide="{{ card.icon }}" class="h-4 w-4 text-ink"></i>
+        <h3 class="text-[18px] font-semibold text-ink">{{ card.title }}</h3>
+    </div>
+    <p class="text-[20px] font-medium leading-tight text-ink">{{ card.value|default:card.title }}</p>
+    <p class="mt-1 text-[14px] leading-5 text-[#77726d]">{{ card.copy }}</p>
+    <button class="mt-6 setza-soft-btn">{{ card.action|default:"Open" }}</button>
+</article>

@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ setza_app_name }}{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Manrope", "Inter", "Segoe UI", "sans-serif"]
+                    },
+                    colors: {
+                        canvas: "#f7f6f4",
+                        ink: "#111111",
+                        muted: "#7b756f",
+                        line: "#dedad6",
+                        surface: "#ffffff",
+                        soft: "#f2f0ed"
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="{% static 'css/setza.css' %}">
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="{% static 'js/setza.js' %}"></script>
+</head>
+<body class="bg-canvas font-sans text-ink">
+    {% block body %}{% endblock %}
+</body>
+</html>

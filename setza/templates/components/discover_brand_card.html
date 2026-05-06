@@ -1,0 +1,36 @@
+<article class="setza-discover-card" x-data="{ saved: false }">
+    <div class="setza-card-banner {{ card.banner_theme }}">
+        <button type="button" class="setza-bookmark-btn" @click="saved = !saved">
+            <i data-lucide="bookmark" class="h-4 w-4" :class="{ 'fill-current': saved }"></i>
+        </button>
+    </div>
+    <div class="p-3">
+        <div class="-mt-8 mb-3 flex items-start gap-3">
+            <div class="setza-avatar {{ card.avatar_theme }}"></div>
+            <div class="flex-1">
+                <h3 class="text-[19px] font-semibold leading-tight">{{ card.name }}</h3>
+                <p class="text-[12px] text-[#75706a]">{{ card.location }}</p>
+                {% include "components/platform_pills.html" with items=card.platforms %}
+                <p class="mt-1 text-[12px] font-medium text-[#4c4844]">{{ card.niche }}</p>
+            </div>
+        </div>
+        <p class="mb-3 text-[12px] leading-5 text-[#6d6862]">{{ card.description }}</p>
+        <div class="mb-3 grid grid-cols-3 gap-2 border-y border-line py-2 text-center">
+            <div><p class="text-[20px] font-semibold">{{ card.campaign_engage }}</p><p class="text-[11px] text-[#7a756f]">Camp. Engage</p></div>
+            <div><p class="text-[20px] font-semibold">{{ card.campaign_frequency }}</p><p class="text-[11px] text-[#7a756f]">Camp. Frequency</p></div>
+            <div><p class="text-[20px] font-semibold">{{ card.event_footfall }}</p><p class="text-[11px] text-[#7a756f]">Event Footfall</p></div>
+        </div>
+        <div class="mb-3 flex gap-2">
+            <a href="{% url 'brand:profile_opportunities' %}" class="setza-outline-btn flex-1 text-center">View Profile</a>
+            <a href="{% url 'brand:messages' %}?thread={{ card.slug }}" class="setza-outline-btn flex-1 text-center">Message</a>
+        </div>
+        {% include "components/tag_chips.html" with items=card.focus_tags %}
+        <div class="mt-3 grid grid-cols-3 gap-2">
+            {% for item in card.gallery %}
+                <div class="setza-gallery-thumb {{ item.theme }}">
+                    <span class="setza-thumb-meta"><i data-lucide="eye" class="h-3 w-3"></i>{{ item.views }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</article>

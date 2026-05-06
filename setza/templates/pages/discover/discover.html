@@ -1,0 +1,11 @@
+{% extends "layouts/public.html" %}
+
+{% block page %}
+    <div class="grid gap-4 lg:grid-cols-[190px_minmax(0,1fr)]">
+        {% include "partials/filter_sidebar.html" %}
+        <div class="space-y-4">
+            {% include "partials/search_filter_bar.html" with target="#discover-results" select="#discover-results" %}
+            {% include "partials/discover_grid.html" %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,5 @@
+<div id="discover-results" class="space-y-4">
+    {% for opportunity in opportunities %}
+        {% include "components/opportunity_card.html" with opportunity=opportunity %}
+    {% endfor %}
+</div>

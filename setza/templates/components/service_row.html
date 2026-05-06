@@ -1,0 +1,18 @@
+<article class="setza-row-card">
+    <div>
+        <div class="mb-2 flex flex-wrap items-center gap-2">
+            <h3 class="text-[18px] font-semibold">{{ service.title }}</h3>
+            {% include "components/platform_pills.html" with items=service.platforms %}
+        </div>
+        <div class="flex flex-wrap gap-6 text-[14px] text-[#5f5a54]">
+            <span>{{ service.inquiries }} Inquiries</span>
+            <span>₹ {{ service.budget }}</span>
+            <span>{{ service.turnaround }}</span>
+            <span>{{ service.date }}</span>
+        </div>
+    </div>
+    <div class="flex items-center gap-2">
+        <a href="{% url 'creator:service_detail' service.slug %}" class="setza-outline-btn">View Inquiries</a>
+        <button class="setza-outline-btn">Edit</button>
+    </div>
+</article>

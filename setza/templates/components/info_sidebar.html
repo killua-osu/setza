@@ -1,0 +1,49 @@
+<aside class="setza-profile-sidebar">
+    <h2 class="mb-3 text-[18px] font-semibold">INFO</h2>
+    <div class="space-y-5">
+        <div class="space-y-2">
+            {% include "components/tag_chips.html" with items=profile.status_tags %}
+        </div>
+        <div class="space-y-1.5 text-[14px] leading-6 text-[#4f4b47]">
+            {% for item in profile.traits %}
+                <div>{{ item }}</div>
+            {% endfor %}
+        </div>
+        {% if profile.audience_types %}
+            <div>
+                <h3 class="mb-2 text-[15px] font-semibold">Audience Type</h3>
+                <div class="space-y-1 text-[14px] text-[#4f4b47]">
+                    {% for item in profile.audience_types %}
+                        <div>{{ item }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        <div class="space-y-2">
+            <button class="setza-outline-btn w-full">Follow</button>
+            <button class="setza-outline-btn w-full">Message</button>
+        </div>
+        <div class="setza-panel-card">
+            <h3 class="mb-3 text-[16px] font-semibold">{% if profile.role == "Brand" %}Collaborate with Velour{% else %}Hire Ronald{% endif %}</h3>
+            <div class="space-y-2 text-[14px]">
+                {% for item in profile.hire_options %}
+                    <a href="#" class="setza-side-cta">{{ item }} <i data-lucide="chevron-right" class="h-4 w-4"></i></a>
+                {% endfor %}
+            </div>
+        </div>
+        <div>
+            <h3 class="mb-2 text-[15px] font-semibold">{% if profile.role == "Brand" %}About Velour{% else %}About Ronald{% endif %}</h3>
+            <p class="text-[13px] leading-6 text-[#68635d]">{{ profile.about }}</p>
+            <button class="mt-2 text-[13px] font-medium text-ink">Read More</button>
+        </div>
+        <div class="setza-panel-card">
+            <h3 class="mb-2 text-[15px] font-semibold">Pricing Range</h3>
+            <p class="text-[18px] font-semibold">{{ profile.pricing_range }}</p>
+            <p class="text-[12px] text-[#7f7b76]">{% if profile.role == "Brand" %}Per Campaign{% else %}Per Campaign{% endif %}</p>
+        </div>
+        <div class="setza-panel-card">
+            <h3 class="mb-2 text-[15px] font-semibold">How to get in touch</h3>
+            <p class="text-[13px] text-[#68635d]">{{ profile.contact_email }}</p>
+        </div>
+    </div>
+</aside>

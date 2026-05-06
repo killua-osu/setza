@@ -1,0 +1,50 @@
+{% extends "layouts/public.html" %}
+
+{% block page %}
+    {% include "components/profile_hero_banner.html" %}
+    <div class="mt-4 grid gap-4 xl:grid-cols-[190px_minmax(0,1fr)]">
+        {% include "components/info_sidebar.html" %}
+        <div class="space-y-4">
+            <div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
+                {% include "components/profile_summary_card.html" %}
+                {% include "components/partner_brands_card.html" %}
+            </div>
+            {% include "components/tab_switcher.html" with tabs=profile_tabs active_tab=active_profile_tab %}
+            <section class="setza-panel-card">
+                <h3 class="text-[20px] font-semibold">Insights Overview</h3>
+                <div class="mt-5 grid gap-3 lg:grid-cols-5">
+                    {% for stat in profile.analytics.overview_metrics %}
+                        <div class="rounded-[16px] border border-line bg-surface px-4 py-4 text-center">
+                            <p class="text-[24px] font-semibold">{{ stat.value }}</p>
+                            <p class="text-[12px] text-[#7b766f]">{{ stat.label }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+            <section class="setza-panel-card">
+                <h3 class="mb-4 text-[20px] font-semibold">Platforms</h3>
+                <div class="grid gap-3 md:grid-cols-2">
+                    {% for platform in profile.analytics.platform_cards %}
+                        <div class="rounded-[16px] border border-line px-4 py-4">
+                            <div class="flex items-center justify-between gap-3">
+                                <div>
+                                    <p class="text-[18px] font-semibold">{{ platform.name }}</p>
+                                    <p class="text-[13px] text-[#7b766f]">{{ platform.followers }}</p>
+                                </div>
+                                {% include "components/verification_badge.html" with badge=platform.trust %}
+                            </div>
+                            <div class="mt-3">{% include "components/data_freshness_label.html" with label=platform.last_synced %}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+            <section class="setza-panel-card">
+                <h3 class="mb-3 text-[20px] font-semibold">Content Format</h3>
+                {% include "components/tag_chips.html" with items=profile.analytics.format_chips %}
+            </section>
+            {% for section in profile.analytics.galleries %}
+                {% include "components/gallery_section.html" %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+.venv/
+.tmp/
+__pycache__/
+*.py[cod]
+
+setza/db.sqlite3
+setza/.pages.sqlite3
+setza/dist/
+setza/staticfiles/
+setza/pytest-cache-files-*/

@@ -1,0 +1,8 @@
+{% extends "layouts/dashboard.html" %}
+
+{% block page %}
+    <div class="grid min-h-[760px] overflow-hidden rounded-[20px] border border-line bg-surface md:grid-cols-[340px_minmax(0,1fr)]">
+        {% include "components/inbox_list.html" %}
+        {% include "components/chat_window.html" %}
+    </div>
+{% endblock %}

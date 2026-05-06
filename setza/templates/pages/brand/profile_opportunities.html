@@ -1,0 +1,18 @@
+{% extends "layouts/public.html" %}
+
+{% block page %}
+    {% include "components/profile_hero_banner.html" %}
+    <div class="mt-4 grid gap-4 xl:grid-cols-[190px_minmax(0,1fr)]">
+        {% include "components/info_sidebar.html" %}
+        <div class="space-y-4">
+            <div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
+                {% include "components/profile_summary_card.html" %}
+                {% include "components/partner_brands_card.html" %}
+            </div>
+            {% include "components/tab_switcher.html" with tabs=profile_tabs active_tab=active_profile_tab %}
+            {% for opportunity in profile.opportunities %}
+                {% include "components/opportunity_card.html" %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="min-h-screen">
+        {% include "partials/global_header.html" %}
+        <main class="setza-dashboard-shell">
+            {% include "partials/dashboard_sidebar.html" %}
+            <section class="setza-dashboard-main">
+                {% block page %}{% endblock %}
+            </section>
+        </main>
+    </div>
+{% endblock %}

@@ -1,0 +1,7 @@
+<div class="border-b border-line">
+    <div class="flex flex-wrap items-center gap-6">
+        {% for tab in tabs %}
+            <a href="{{ tab.url|default:'#' }}" class="setza-tab-link {% if tab.key == active_tab %}is-active{% endif %}">{{ tab.label }}</a>
+        {% endfor %}
+    </div>
+</div>

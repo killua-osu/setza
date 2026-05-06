@@ -1,0 +1,40 @@
+<aside class="setza-filter-sidebar">
+    <div class="space-y-3 border-b border-line pb-4 text-[13px]">
+        {% for item in filters.left_top %}
+            <label class="flex items-center gap-2 text-[#4e4a46]">
+                <input type="checkbox" class="h-3.5 w-3.5 rounded-full border-line text-ink">
+                <span>{{ item.label }}</span>
+            </label>
+        {% endfor %}
+    </div>
+
+    {% if discover_kind %}
+        <div class="space-y-2 border-b border-line py-4 text-[13px]">
+            {% for item in filters.role_options %}
+                <label class="flex items-center gap-2 text-[#4e4a46]">
+                    <input type="radio" name="discover-role" class="h-3.5 w-3.5 border-line text-ink" {% if item.value == discover_kind %}checked{% endif %}>
+                    <span>{{ item.label }}</span>
+                </label>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="space-y-5 pt-4">
+        {% for section in filters.categories %}
+            <div>
+                <div class="mb-2 flex items-center justify-between text-[14px] font-medium text-ink">
+                    <span>{{ section.title }}</span>
+                    <i data-lucide="chevron-down" class="h-3.5 w-3.5 text-[#77736f]"></i>
+                </div>
+                <div class="space-y-1.5 text-[13px] text-[#57524c]">
+                    {% for item in section.items %}
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" class="h-3.5 w-3.5 rounded-full border-line text-ink">
+                            <span>{{ item }}</span>
+                        </label>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</aside>

@@ -1,0 +1,38 @@
+{% extends "layouts/dashboard.html" %}
+
+{% block page %}
+    <div>
+        <h1 class="setza-page-title">{{ dashboard.title }}</h1>
+        <p class="setza-page-subtitle">{{ dashboard.subtitle }}</p>
+
+        <div class="mt-8 grid gap-4 lg:grid-cols-3">
+            {% for stat in dashboard.stats %}
+                {% include "components/stat_card.html" %}
+            {% endfor %}
+        </div>
+
+        <section class="mt-7">
+            <div class="setza-section-header">Action Required</div>
+            <div class="grid gap-4 lg:grid-cols-2">
+                {% for card in dashboard.actions_required %}
+                    {% include "components/action_card.html" %}
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="mt-7">
+            <div class="setza-section-header">Quick Actions</div>
+            <div class="grid gap-4 lg:grid-cols-3">
+                {% for card in dashboard.quick_actions %}
+                    <article class="setza-panel-card">
+                        <div class="mb-3 flex items-center gap-3">
+                            <i data-lucide="{{ card.icon }}" class="h-4 w-4"></i>
+                            <h3 class="text-[18px] font-semibold">{{ card.title }}</h3>
+                        </div>
+                        <p class="text-[14px] leading-6 text-[#716b65]">{{ card.copy }}</p>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+{% endblock %}

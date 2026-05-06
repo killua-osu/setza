@@ -1,0 +1,33 @@
+<div class="border-r border-line bg-surface">
+    <div class="border-b border-line p-4">
+        <h2 class="text-[32px] font-semibold">Inbox</h2>
+        <label class="setza-search-input mt-4">
+            <i data-lucide="search" class="h-4 w-4 text-[#8b8680]"></i>
+            <input type="text" placeholder="Search" class="w-full bg-transparent text-[14px] outline-none">
+        </label>
+        <div class="mt-4 flex gap-1 rounded-[12px] border border-line p-1">
+            {% for tab in messaging.tabs %}
+                <button class="flex-1 rounded-[10px] px-3 py-2 text-[13px] {% if forloop.first %}bg-soft font-medium text-ink{% else %}text-[#69655f]{% endif %}">{{ tab }}</button>
+            {% endfor %}
+        </div>
+    </div>
+    <div>
+        {% for item in messaging.conversations %}
+            <button
+                class="setza-conversation-item {% if item.slug == active_slug %}is-active{% endif %}"
+                hx-get="{% url 'messaging:thread' current_role item.slug %}"
+                hx-target="#chat-window"
+                hx-swap="outerHTML"
+            >
+                <div class="setza-avatar {{ item.avatar_theme }}"></div>
+                <div class="min-w-0 flex-1 text-left">
+                    <div class="flex items-center justify-between gap-3">
+                        <div class="truncate text-[18px] font-semibold">{{ item.name }} <span class="text-[13px] font-normal text-[#847f79]">{{ item.type }}</span></div>
+                        <span class="text-[12px] text-[#8d877f]">{{ item.date }}</span>
+                    </div>
+                    <p class="truncate text-[13px] text-[#6e6964]">{{ item.preview }}</p>
+                </div>
+            </button>
+        {% endfor %}
+    </div>
+</div>

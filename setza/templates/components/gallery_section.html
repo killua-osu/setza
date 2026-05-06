@@ -1,0 +1,11 @@
+<section class="setza-panel-card">
+    <h3 class="text-[20px] font-semibold">{{ section.title }}</h3>
+    <p class="mb-4 mt-1 text-[13px] leading-5 text-[#726d68]">{{ section.copy }}</p>
+    <div class="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+        {% for item in section.items %}
+            <div class="setza-gallery-large {{ item.theme }}">
+                <span class="setza-thumb-meta"><i data-lucide="eye" class="h-3 w-3"></i>{{ item.views }}</span>
+            </div>
+        {% endfor %}
+    </div>
+</section>

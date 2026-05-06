@@ -1,0 +1,25 @@
+{% extends "layouts/dashboard.html" %}
+
+{% block page %}
+    <div>
+        <div class="flex items-end justify-between gap-4">
+            <div>
+                <h1 class="setza-page-title">Services</h1>
+                <p class="setza-page-subtitle">Monitor your active services and pending actions.</p>
+            </div>
+            <button class="setza-primary-btn">Create New</button>
+        </div>
+        <div class="mt-7 grid gap-4 lg:grid-cols-2">
+            {% include "components/stat_card.html" with stat=dashboard.stats.0 %}
+            {% include "components/stat_card.html" with stat=dashboard.stats.1 %}
+        </div>
+        <section class="mt-7">
+            <div class="setza-section-header">Your Active Services</div>
+            <div class="space-y-4">
+                {% for service in services %}
+                    {% include "components/service_row.html" %}
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+{% endblock %}

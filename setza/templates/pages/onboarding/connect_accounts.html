@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="mx-auto max-w-[1180px] px-4 py-10">
+        <h1 class="text-[40px] font-semibold">Connect social accounts</h1>
+        <p class="mt-2 text-[15px] text-[#706b65]">Social platforms are connected accounts, not your primary Setza identity.</p>
+        <div class="mt-6 grid gap-4 lg:grid-cols-3">
+            {% for account in connected_accounts %}
+                {% include "components/connected_account_card.html" %}
+            {% endfor %}
+        </div>
+        <div class="mt-8">
+            <a href="{% if current_role == 'brand' %}{% url 'brand:dashboard' %}{% else %}{% url 'creator:dashboard' %}{% endif %}" class="setza-primary-btn">Finish onboarding</a>
+        </div>
+    </div>
+{% endblock %}

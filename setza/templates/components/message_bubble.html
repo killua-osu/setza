@@ -1,0 +1,9 @@
+<div class="setza-message-row {% if message.sender == 'me' %}is-me{% endif %}">
+    {% if message.sender != 'me' %}
+        <div class="setza-avatar-sm {{ active_conversation.avatar_theme }}"></div>
+    {% endif %}
+    <div class="flex-1">
+        <div class="setza-message-time">{{ message.time }}</div>
+        <div class="setza-message-bubble {% if message.sender == 'me' %}is-me{% endif %}">{{ message.body }}</div>
+    </div>
+</div>

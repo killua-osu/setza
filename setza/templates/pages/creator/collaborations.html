@@ -1,0 +1,22 @@
+{% extends "layouts/dashboard.html" %}
+
+{% block page %}
+    <div>
+        <h1 class="setza-page-title">Collaborations</h1>
+        <p class="setza-page-subtitle">Manage your engagements and pending actions.</p>
+        <div class="mt-7 grid gap-4 lg:grid-cols-2">
+            {% for stat in collaborations.summary %}
+                {% include "components/stat_card.html" %}
+            {% endfor %}
+        </div>
+        <div class="mt-7 flex items-center justify-center gap-8 border-b border-line pb-3 text-[16px]">
+            <span class="setza-tab-link is-active">One-Time</span>
+            <span class="setza-tab-link">Campaign</span>
+        </div>
+        <div class="mt-5 space-y-4">
+            {% for item in collaborations.items %}
+                {% include "components/collaboration_card.html" %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,4 @@
+<div class="flex items-center gap-4 text-[13px] text-[#4c4945]">
+    <a href="{{ role_switch.creator|default:'#' }}" class="setza-role-link {% if current_role == 'creator' %}is-active{% endif %}">Creator</a>
+    <a href="{{ role_switch.brand|default:'#' }}" class="setza-role-link {% if current_role == 'brand' %}is-active{% endif %}">Brand</a>
+</div>

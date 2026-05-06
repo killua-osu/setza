@@ -1,0 +1,13 @@
+{% extends "layouts/dashboard.html" %}
+
+{% block page %}
+    <div>
+        <h1 class="setza-page-title">Connected Accounts</h1>
+        <p class="setza-page-subtitle">Track connection health, token state, verification trust, and sync freshness.</p>
+        <div class="mt-7 grid gap-4 lg:grid-cols-3">
+            {% for account in connected_accounts %}
+                {% include "components/connected_account_card.html" %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

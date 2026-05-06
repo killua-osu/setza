@@ -1,0 +1,31 @@
+{% load setza_ui %}
+<div class="space-y-2">
+    <label for="id_{{ field.name }}" class="text-[13px] font-semibold text-[#3f3a36]">{{ field.label }}</label>
+    {% if field.type == "select" %}
+        <div class="setza-select-shell !w-full !min-w-0">
+            <select id="id_{{ field.name }}" name="{{ field.name }}" class="setza-select">
+                {% for option in field.options %}
+                    <option value="{{ option.value }}" {% if values|get_item:field.name == option.value %}selected{% endif %}>{{ option.label }}</option>
+                {% endfor %}
+            </select>
+            <i data-lucide="chevron-down" class="h-3.5 w-3.5 text-[#76716d]"></i>
+        </div>
+    {% else %}
+        <input
+            id="id_{{ field.name }}"
+            type="{{ field.type }}"
+            name="{{ field.name }}"
+            value="{% if field.type != 'password' %}{{ values|get_item:field.name|default:'' }}{% endif %}"
+            {% if field.placeholder %}placeholder="{{ field.placeholder }}"{% endif %}
+            {% if field.autocomplete %}autocomplete="{{ field.autocomplete }}"{% endif %}
+            class="setza-form-input"
+        >
+    {% endif %}
+    {% if field_errors|get_item:field.name %}
+        <div class="space-y-1 text-[12px] text-[#8d3a2d]">
+            {% for error in field_errors|get_item:field.name %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

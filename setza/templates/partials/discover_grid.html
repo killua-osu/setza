@@ -1,0 +1,5 @@
+<div id="discover-results" class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+    {% for card in cards %}
+        {% include card_component with card=card %}
+    {% endfor %}
+</div>

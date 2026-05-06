@@ -1,0 +1,22 @@
+<header class="border-b border-line bg-surface">
+    <div class="mx-auto flex h-[62px] w-full max-w-[1480px] items-center justify-between gap-6 px-4 lg:px-6">
+        <div class="flex items-center gap-8">
+            <a href="/" class="setza-logo text-[26px] leading-none text-ink">Setza</a>
+            <nav class="flex items-center gap-5 text-[13px] text-[#4c4945]">
+                {% for item in header_items %}
+                    <a href="{{ item.url }}" class="setza-top-link {% if item.is_active %}is-active{% endif %}">{{ item.label }}</a>
+                {% endfor %}
+            </nav>
+        </div>
+        <div class="flex items-center gap-5">
+            <a href="{% if current_role == 'brand' %}{% url 'brand:messages' %}{% else %}{% url 'creator:messages' %}{% endif %}" class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-transparent text-ink">
+                <i data-lucide="mail" class="h-4 w-4"></i>
+            </a>
+            {% include "partials/role_switch.html" %}
+            <form method="post" action="{% url 'accounts:sign_out' %}">
+                {% csrf_token %}
+                <button type="submit" class="setza-outline-btn min-h-[36px] px-4 text-[13px]">Logout</button>
+            </form>
+        </div>
+    </div>
+</header>

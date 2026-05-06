@@ -1,0 +1,7 @@
+<aside class="setza-dashboard-sidebar">
+    <nav class="space-y-0">
+        {% for item in dashboard_sidebar %}
+            <a href="{{ item.url }}" class="setza-side-link {% if item.is_active %}is-active{% endif %}">{{ item.label }}</a>
+        {% endfor %}
+    </nav>
+</aside>

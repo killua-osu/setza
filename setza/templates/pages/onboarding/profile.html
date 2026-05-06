@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="flex min-h-screen items-center justify-center px-4">
+        <form method="post" class="w-full max-w-[760px] rounded-[30px] border border-line bg-surface p-8">
+            {% csrf_token %}
+            <h1 class="text-[34px] font-semibold">Create your Setza profile</h1>
+            <p class="mt-2 text-[14px] text-[#706b65]">Manual profile creation comes first, even before any platform is connected.</p>
+            {% if non_field_errors %}
+                <div class="mt-6 space-y-2">
+                    {% for error in non_field_errors %}
+                        <div class="rounded-[18px] border border-[#ead7d1] bg-[#fcf3f0] px-4 py-3 text-[13px] text-[#8d3a2d]">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="mt-6 grid gap-4 md:grid-cols-2">
+                <div>
+                    <input type="text" name="display_name" value="{{ values.display_name|default:'' }}" placeholder="Display name" class="setza-form-input">
+                    {% if field_errors.display_name %}<p class="mt-2 text-[12px] text-[#8d3a2d]">{{ field_errors.display_name.0 }}</p>{% endif %}
+                </div>
+                <div>
+                    <input type="text" name="location" value="{{ values.location|default:'' }}" placeholder="Location" class="setza-form-input">
+                    {% if field_errors.location %}<p class="mt-2 text-[12px] text-[#8d3a2d]">{{ field_errors.location.0 }}</p>{% endif %}
+                </div>
+                <div class="md:col-span-2">
+                    <textarea name="bio" placeholder="Short bio" class="setza-form-input md:col-span-2">{{ values.bio|default:'' }}</textarea>
+                    {% if field_errors.bio %}<p class="mt-2 text-[12px] text-[#8d3a2d]">{{ field_errors.bio.0 }}</p>{% endif %}
+                </div>
+            </div>
+            <button type="submit" class="mt-6 setza-primary-btn">Continue</button>
+        </form>
+    </div>
+{% endblock %}

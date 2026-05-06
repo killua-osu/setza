@@ -1,0 +1,31 @@
+{% load setza_ui %}
+<div class="setza-toolbar-card">
+    <p class="mb-3 text-[13px] text-[#5a5651]">Use keywords and filters to find creators</p>
+    <form
+        class="space-y-3"
+        hx-get="{{ request.path }}"
+        hx-target="{{ target|default:'#discover-results' }}"
+        hx-select="{{ select|default:'#discover-results' }}"
+        hx-push-url="true"
+    >
+        <label class="setza-search-input">
+            <i data-lucide="search" class="h-4 w-4 text-[#8b8680]"></i>
+            <input type="text" name="q" value="{{ filter_values.q|default:'' }}" placeholder="Search" class="w-full bg-transparent text-[14px] outline-none">
+        </label>
+        <div class="flex flex-wrap gap-2">
+            {% for item in filters.search_filters %}
+                <label class="setza-select-shell">
+                    <select name="{{ item.name }}" class="setza-select">
+                        <option value="">{{ item.label }}</option>
+                        {% for option in item.options %}
+                            <option value="{{ option }}" {% if filter_values|get_item:item.name == option %}selected{% endif %}>{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                    <i data-lucide="chevron-down" class="h-3.5 w-3.5 text-[#76716d]"></i>
+                </label>
+            {% endfor %}
+            <button type="button" class="setza-soft-btn px-3">More</button>
+            <a href="{{ request.path }}" class="setza-ghost-link">Reset</a>
+        </div>
+    </form>
+</div>

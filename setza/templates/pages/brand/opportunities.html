@@ -1,0 +1,26 @@
+{% extends "layouts/dashboard.html" %}
+
+{% block page %}
+    <div>
+        <div class="flex items-end justify-between gap-4">
+            <div>
+                <h1 class="setza-page-title">Opportunities</h1>
+                <p class="setza-page-subtitle">Monitor your active opportunities and pending actions.</p>
+            </div>
+            <button class="setza-primary-btn">Create New</button>
+        </div>
+        <div class="mt-7 grid gap-4 lg:grid-cols-2">
+            {% for stat in summary_stats %}
+                {% include "components/stat_card.html" %}
+            {% endfor %}
+        </div>
+        <section class="mt-7">
+            <div class="setza-section-header">Your Active Opportunities</div>
+            <div class="space-y-4">
+                {% for row in opportunities %}
+                    {% include "components/opportunity_row.html" %}
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+{% endblock %}
